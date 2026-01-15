@@ -1,5 +1,8 @@
-# Ovidiu's Claude Code harness 
-This is my harness system for Claude Code, a combination between Anthropic's guidelines of long running tasks and the implementation of the [Manus style persistent markdown planning](https://github.com/OthmanAdi/planning-with-files) 
+# Trent's Claude Code harness
+
+> **Fork notice:** This is a fork of [oeftimie/vv-claude-harness](https://github.com/oeftimie/vv-claude-harness), adapted for Python, Rust, and Go workflows.
+
+This harness system for Claude Code combines Anthropic's guidelines for long running tasks with the [Manus style persistent markdown planning](https://github.com/OthmanAdi/planning-with-files) pattern. 
 
 
 Every AI coding agent has the same Achilles heel: memory. Not the technical kind (context windows are growing). The practical kind. Start a complex project with Claude Code or Cursor. Work for an hour. Hit a context limit or close the session. Come back the next day. The agent has no idea what happened. It's like onboarding a new contractor every morning who's never seen the codebase.
@@ -49,17 +52,17 @@ The single-feature rule that Claude prompts the subagent with, prevents one-shot
 End-to-end verification prevents premature victory. The agent can't mark a feature complete just because it wrote the code. It has to actually test it. Not unit tests alone (they can pass while the feature is broken). Not manual inspection (the agent can convince itself anything works). Real end-to-end verification that proves the feature actually functions.
 
 ## The init.sh script
-I initialy started my exploration with building iOS apps- now at the second iteration with this harness, I adapted it to be used for multiple programming languages. Every session starts by running `init.sh`, which installs dependencies, builds the project, and runs a smoke test. If `init.sh` fails, the agent fixes it before doing anything else.  
+This harness supports multiple programming languages including Python, Rust, and Go. Every session starts by running `init.sh`, which installs dependencies, builds the project, and runs a smoke test. If `init.sh` fails, the agent fixes it before doing anything else.  
 
 This seems minor but it's load-bearing. Without it, agents accumulate subtle environment drift across sessions. Dependencies get out of sync. Build configurations rot. The agent starts a session, tries to work, hits a mysterious failure, spends half its context debugging something that has nothing to do with the feature it's supposed to build.
 
-For multi-language projects (iOS app with a Node backend, say), the script auto-detects or reads from a config file:
+For multi-language projects (a Go API with a Python ML service, say), the script auto-detects or reads from a config file:
 
 ```json
 {
   "stacks": [
-    {"name": "ios", "path": "./", "scheme": "MyApp"},
-    {"name": "node", "path": "./backend"}
+    {"name": "go", "path": "./api"},
+    {"name": "python", "path": "./ml-service"}
   ]
 }
 ```
@@ -74,7 +77,7 @@ The Manus planning-with-files pattern solves the micro problem: how does an agen
 
 Putting them together: the initializer creates `features.json` (Anthropic pattern) and `task_plan.md` (Manus pattern). The coding agent reads `claude-progress.txt` (Anthropic pattern) and writes to `findings.md` (Manus pattern). The session protocol ensures clean handoffs (Anthropic pattern) while the 2-action rule ensures the agent doesn't lose important context mid-session (Manus pattern).
 
-The filesystem becomes the connective tissue. Not because files are the optimal data structure for agent memory (they're not), but because they're the optimal trade-off between simplicity, transparency, and effectiveness. We can always build something more sophisticated later, but this works today, and during my break I alreayd pushed one MacOs app - [Lan Lens](https://apps.apple.com/us/app/lanlensapp/id6757317898?mt=12) and one iOS one [NOTAM App](https://apps.apple.com/us/app/notams-app/id6757545391) to the Apple AppStore.  
+The filesystem becomes the connective tissue. Not because files are the optimal data structure for agent memory (they're not), but because they're the optimal trade-off between simplicity, transparency, and effectiveness. We can always build something more sophisticated later, but this works today.  
 
 ## What remains unsolved
 
@@ -87,15 +90,6 @@ This harness addresses the core challenge of multi-session continuity, but sever
 * What's the right granularity for features? Too coarse and you're back to one-shotting. Too fine and you spend all your time on coordination overhead. The sweet spot probably varies by project and I'm looking at folks to explore and let me know
 
 ## Getting started
-Everything you need is in this repo, including my [Claude.md](https://github.com/oeftimie/vv-claude-harness/blob/main/CLAUDE.md) 
-
-### Some screenshots from my sessions
-<img width="1248" height="1076" alt="Screenshot 2026-01-09 at 12 47 25" src="https://github.com/user-attachments/assets/25b4be66-c384-4225-92a6-cd4d2c8964a8" />
-<img width="849" height="766" alt="Screenshot 2026-01-09 at 12 42 01" src="https://github.com/user-attachments/assets/031c3dfb-4a35-4b6b-bac9-200049c7ee28" />
-
-
-### UI test automation with XCode & Claude Code
-https://github.com/user-attachments/assets/9684d120-3cbf-438d-a01f-469387f507ff
-
+Everything you need is in this repo, including the [CLAUDE.md](https://github.com/trentdavies/vv-claude-harness/blob/main/CLAUDE.md) configuration.
 
 ---

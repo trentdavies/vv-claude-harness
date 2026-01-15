@@ -22,16 +22,16 @@ git status 2>/dev/null || echo "NO GIT REPO"
 
 # Check for existing project files
 ls -la
-find . -maxdepth 2 \( -name "*.xcodeproj" -o -name "*.xcworkspace" -o -name "Package.swift" -o -name "package.json" -o -name "requirements.txt" -o -name "go.mod" -o -name "Cargo.toml" \) 2>/dev/null
+find . -maxdepth 2 \( -name "requirements.txt" -o -name "pyproject.toml" -o -name "Cargo.toml" -o -name "go.mod" \) 2>/dev/null
 ```
 
 **If NO git repo exists:**
-- Ask Ovidiu: "This folder has no git repo. Should I initialize one?"
+- Ask Trent: "This folder has no git repo. Should I initialize one?"
 - Do NOT proceed without git (version control is essential for the harness)
 
 **If project files exist:**
 1. Identify all tech stacks present
-2. Ask Ovidiu for any missing configuration (e.g., "I found an iOS project. What's the scheme name?")
+2. Ask Trent for any missing configuration (e.g., "I found a Python project. What's the main package?")
 3. Create `.harness.json` explicitly documenting what you found
 4. Do NOT rely solely on auto-detection for existing projects
 
@@ -53,10 +53,8 @@ Analyze the project and create explicit configuration:
   "description": "Brief description",
   "stacks": [
     {
-      "name": "ios",
-      "path": "./",
-      "scheme": "ActualSchemeName",
-      "simulator": "iPhone 15"
+      "name": "python",
+      "path": "./"
     }
   ],
   "smoke_test": null
@@ -65,10 +63,10 @@ Analyze the project and create explicit configuration:
 
 **For existing projects:**
 - Detect stacks by examining files present
-- Ask Ovidiu for scheme names, entry points, or other config you can't infer
+- Ask Trent for entry points, test commands, or other config you can't infer
 - Document what you found so future sessions don't re-guess
 
-**Supported stacks:** `ios`, `node`, `python`, `go`, `rust`
+**Supported stacks:** `python`, `rust`, `go`
 
 ### 2. `init.sh`
 
@@ -162,4 +160,4 @@ Before ending this session:
 - [ ] `claude-progress.txt` created
 - [ ] `context_summary.md` created
 - [ ] All files committed to git
-- [ ] Report summary to Ovidiu
+- [ ] Report summary to Trent

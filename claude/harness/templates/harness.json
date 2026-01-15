@@ -3,19 +3,16 @@
   "description": "Brief project description",
   "stacks": [
     {
-      "name": "ios",
-      "path": "./",
-      "scheme": "MyApp",
-      "simulator": "iPhone 15"
-    },
-    {
-      "name": "node",
-      "path": "./backend",
-      "test_command": "npm test"
-    },
-    {
       "name": "python",
-      "path": "./scripts"
+      "path": "./services"
+    },
+    {
+      "name": "rust",
+      "path": "./core"
+    },
+    {
+      "name": "go",
+      "path": "./api"
     }
   ],
   "smoke_test": "./scripts/smoke-test.sh"

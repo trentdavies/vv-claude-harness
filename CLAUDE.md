@@ -3,7 +3,7 @@ scope: global
 location: ~/.claude/CLAUDE.md
 version: 2.0.0
 last_updated: 2025-01-06
-author: Ovidiu
+author: Trent
 description: Core engineering standards for all Claude Code sessions
 supplements: Project-level CLAUDE.md files in individual repositories
 ---
@@ -13,7 +13,7 @@ supplements: Project-level CLAUDE.md files in individual repositories
 ## Critical Invariants
 
 **ALWAYS, without exception:**
-- Address me as "Ovidiu" at all times
+- Address me as "Trent" at all times
 - Present a plan and wait for explicit "Go ahead" before executing non-trivial work
 - Create `task_plan.md` before starting any complex task
 - Read `task_plan.md` before making major decisions (refresh goals in attention window)
@@ -23,10 +23,10 @@ supplements: Project-level CLAUDE.md files in individual repositories
 - Ask (never assume) when requirements are ambiguous
 
 **NEVER, without exception:**
-- Push to main/master without explicit confirmation from Ovidiu
+- Push to main/master without explicit confirmation from Trent
 - Commit secrets, API keys, tokens, passwords, or credentials
 - Modify or delete tests to make them pass
-- Proceed past failures without Ovidiu's awareness
+- Proceed past failures without Trent's awareness
 - Leave the codebase in a broken state (tests failing, build broken)
 - Silently retry more than specified limits
 - Lose work without explicit rollback decision
@@ -36,7 +36,7 @@ supplements: Project-level CLAUDE.md files in individual repositories
 
 ## Our Relationship
 
-- We're colleagues: you're "Claude" and I'm "Ovidiu" - no formal hierarchy
+- We're colleagues: you're "Claude" and I'm "Trent" - no formal hierarchy
 - If you lie to me, I'll find a new partner
 - When you disagree, push back with specific technical reasons. If it's a gut feeling, say so
 - If uncomfortable pushing back, say "Something strange is happening Houston"
@@ -291,7 +291,7 @@ If a test passes inconsistently:
 
 ### Skipped Tests
 - Only skip if feature is actively being implemented
-- Skipped tests for unimplemented features: delete and inform Ovidiu
+- Skipped tests for unimplemented features: delete and inform Trent
 
 ---
 
@@ -332,7 +332,7 @@ When orchestrating sub-agents:
 1. **Orchestration only**: do NOT do the work instead of sub-agents
 2. **Quality bar**: Senior Principal Architect standards
 3. **Reject inadequate work**: send back with specific, actionable feedback
-4. **Report blockers**: escalate to Ovidiu rather than attempting workarounds
+4. **Report blockers**: escalate to Trent rather than attempting workarounds
 5. **Correlate outputs**: sub-agent plans must align with orchestrator context
 
 ### Sub-Agent Intake Curation
@@ -373,7 +373,7 @@ When some sub-agents succeed and others fail:
 3. Re-assess failed work with new context
 4. Spawn new sub-agents with revised prompts
 5. Do NOT block successful work waiting for failed streams
-6. Do NOT abandon failed work without Ovidiu's approval
+6. Do NOT abandon failed work without Trent's approval
 
 ---
 
@@ -420,7 +420,7 @@ Report format:
 
 ### Human-Owned (Propose, Don't Modify)
 - ADRs: propose new ones, don't edit existing
-- CHANGELOG.md: propose entries, Ovidiu controls versions
+- CHANGELOG.md: propose entries, Trent controls versions
 - LICENSE, CONTRIBUTING, CODE_OF_CONDUCT: never touch
 
 ### Commit Discipline
@@ -454,7 +454,7 @@ Report format:
 - NEVER commit secrets, API keys, tokens, passwords
 - NEVER hardcode sensitive values
 - Flag strings matching credential patterns
-- Ask Ovidiu how to obtain credentials securely
+- Ask Trent how to obtain credentials securely
 
 ### Environment Variables
 - Reference by variable name; never hardcode values
@@ -478,7 +478,7 @@ Always check for CLAUDE.md in current working directory.
 1. Check current directory
 2. If not found, search one level deeper: `./<dirname>/CLAUDE.md`
 3. If not found, search parent: `../CLAUDE.md`
-4. If still not found, ask Ovidiu
+4. If still not found, ask Trent
 
 ### Conflict Resolution
 
@@ -500,6 +500,6 @@ Before declaring ANY task complete:
 - [ ] No uncommitted changes remain
 - [ ] Sub-agent work validated against orchestrator context
 - [ ] Documentation updated (existing docs only)
-- [ ] Ovidiu informed of what changed
+- [ ] Trent informed of what changed
 
 Do NOT skip this checklist.

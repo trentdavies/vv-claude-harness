@@ -63,14 +63,12 @@ Then:
 ## Supported Languages
 
 init.sh auto-detects or reads .harness.json for:
-- iOS/Swift (*.xcodeproj, Package.swift)
-- Node.js (package.json)
 - Python (requirements.txt, pyproject.toml)
-- Go (go.mod)
 - Rust (Cargo.toml)
+- Go (go.mod)
 
 ## Requirements
 
 - Claude Code installed
 - Git
-- Language-specific tools (Xcode, Node, Python, etc.)
+- Language-specific tools (Python, Cargo, Go, etc.)

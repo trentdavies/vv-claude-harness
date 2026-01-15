@@ -118,7 +118,7 @@ Mark initialization complete, note what's ready for next agent.
 ## Handoff
 
 After initialization:
-1. Report to Ovidiu what was created
+1. Report to Trent what was created
 2. Summarize feature count and categories
 3. Confirm first feature (F001) is ready for implementation
 4. Next session should use coding-agent-prompt.md
